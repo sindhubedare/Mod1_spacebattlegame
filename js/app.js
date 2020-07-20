@@ -39,7 +39,7 @@ class Schwaz{
                 console.log("%c USS- Schwaz attacked alien " +(i+1)  +" successfully","font-size:15px;background:lightblue;");
                 if(this.hull_calc(i)<=0)
                 {
-                console.log("%c kabloo-ey !!!Alien ship" +(i+1) +" is destroyed!","font-size:20px;color:red;");
+                console.log("%c kabloo-ey !!!Alien ship" +(i+1) +" is destroyed!","font-size:20px;background:lightgreen;");
                 if(this.retreat()==1)     //if the player decides to retreat
                 {
                     console.log("%c USS- Schwaz retreated from the alien attack","font-size:20px;color:lightblue;")
