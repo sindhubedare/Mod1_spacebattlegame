@@ -36,7 +36,7 @@ class Schwaz{
     if(Math.random()<=Aliens[i].accuracy)  {
     console.log("%c USS- Schwaz attacked alien " +(i+1)  +" successfully","font-size:15px;background:lightblue;");
     if(this.calc(i)<=0) {
-    console.log("%c kabloo-ey !!!Alien ship" +(i+1) +" is destroyed!","font-size:20px;background:lightgreen;");
+    console.log("%c kabloo-ey !!!Alien " +(i+1) +" is destroyed!","font-size:20px;background:lightgreen;");
     if(this.rt()==1) {    //if the player decides to retreat
      console.log("%c USS- Schwaz retreated from the alien attack","font-size:20px;color:red;")
     return;
@@ -47,7 +47,7 @@ class Schwaz{
     else i--;        
     }
     else{
-    console.log("%c Another Alien ship " +(i+ 1) +" is about to attack"); 
+    console.log("%c Another Alien " +(i+ 1) +" is about to attack"); 
     Aliens[i].ak(i);
     return;
     } } }
@@ -77,18 +77,18 @@ this.hull=Math.floor(Math.random()*3)+4; //selecting hull=3
 this.firepower=Math.floor(Math.random()*2)+3; // selecting firepower=2
 this.accuracy=((Math.floor(Math.random() * 3) + 7) )/10;  //to get accuracy=0.6 dividing by 10 (6/10=0.6)
 }
-ak(Aliegnno){   //when alien attacks the Schwaz
+ak(aliencurrentno){   //when alien attacks the Schwaz
 if(Math.random()<=schwaz.accuracy){
-console.log("%c Alien " +Aliegnno+ " attacked USS- Schwaz successfully","font-size:15px;background:lightblue;");
+console.log("%c Alien " +aliencurrentno+ " attacked USS- Schwaz successfully","font-size:15px;background:lightblue;");
 if(this.calc()<=0){
 console.log("%c USS- Schwaz is destroyed! Alien attack successful. You LOST the WAR","font-size:20px;color:red;");
 alert("USS- Schwaz is Lost")
 return;
 }
-else this.ak(Aliegnno);
+else this.ak(aliencurrentno);
 }else
 {
-aliennow=Aliegnno;
+aliennow=aliencurrentno;
 schwaz.ak();
 }
 }
@@ -98,13 +98,13 @@ return this.hull;
 }
 }
 
-const A1= new Alien();  //defining all alien ships to Alien_ship() and creating an array of 6 aliens
-const A2= new Alien();
-const A3= new Alien();
-const A4= new Alien();
-const A5= new Alien();
-const A6= new Alien();
-let Aliens=[A1,A2,A3,A4,A5,A6];
+const a1= new Alien();  //defining all alien ships to Alien_ship() and creating an array of 6 aliens
+const a2= new Alien();
+const a3= new Alien();
+const a4= new Alien();
+const a5= new Alien();
+const a6= new Alien();
+let Aliens=[a1,a2,a3,a4,a5,a6];
 var aliennow=0;           // we have already used currentAlien in the code above hence defining
 
 const schwaz=new Schwaz(20,5,0.7);  //values of USS-Schwaz's hull, firepower and accuracy
