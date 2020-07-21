@@ -28,98 +28,85 @@ class Schwaz{
     this.firepower=firepower;
     this.accuracy=accuracy;
     }
-    attack=()=>
+    ak=()=>
     {
-        for(let i=currentAlien;i<6;i++)  //hard coding for 6 because we have 6 aliens
-        {
-            console.log("USS- Schwaz is attacking alien ship " +(i+1));
-            
-            if(Math.random()<=Aliens[i].accuracy)
-            {
-                console.log("%c USS- Schwaz attacked alien " +(i+1)  +" successfully","font-size:15px;background:lightblue;");
-                if(this.hull_calc(i)<=0)
-                {
-                console.log("%c kabloo-ey !!!Alien ship" +(i+1) +" is destroyed!","font-size:20px;background:lightgreen;");
-                if(this.retreat()==1)     //if the player decides to retreat
-                {
-                    console.log("%c USS- Schwaz retreated from the alien attack","font-size:20px;color:lightblue;")
-                    return;
-                }
-                if(i===5)      //after 1 Alien is destroyed, we have 5 more to attack! Hence, i is strictly equals to 5
-                alert("Hurray!!!! USS- Schwaz Won")
-                }
-                else i--;        
-                }else{
-                console.log("%c Another Alien ship " +(i+ 1) +" is about to attack"); 
-                Aliens[i].attack(i);
-                return;
-            }
-        }
-
+    for(let i=aliennow;i<6;i++)  //hard coding for 6 because we have 6 aliens
+    {
+    console.log("USS- Schwaz is attacking alien ship " +(i+1));
+    if(Math.random()<=Aliens[i].accuracy)  {
+    console.log("%c USS- Schwaz attacked alien " +(i+1)  +" successfully","font-size:15px;background:lightblue;");
+    if(this.calc(i)<=0) {
+    console.log("%c kabloo-ey !!!Alien ship" +(i+1) +" is destroyed!","font-size:20px;background:lightgreen;");
+    if(this.rt()==1) {    //if the player decides to retreat
+     console.log("%c USS- Schwaz retreated from the alien attack","font-size:20px;color:red;")
+    return;
     }
+    if(i===5)      //after 1 Alien is destroyed, we have 5 more to attack! Hence, i is strictly equals to 5
+    alert("Hurray!!!! USS- Schwaz Won")
+     }
+    else i--;        
+    }
+    else{
+    console.log("%c Another Alien ship " +(i+ 1) +" is about to attack"); 
+    Aliens[i].ak(i);
+    return;
+    } } }
 
        //USS-Schwaz has retreat fuction which leads to game end
-    retreat(){
-        let action = "";
-        action = prompt("Do you want to retreat? Press Yes to retreat or 'Ok' button to attack ", "Yes or No");   
-        try{                       //The try statement allows you to define a block of code to be tested for errors while it is being executed.
-            if(action.toLowerCase()=="yes")
-            return 1;
-            else
-            return 0;
-        }
-        catch(err)
-        {
-            console.log("Please press yes or no");
-        }
-       
+    rt(){
+    let action = "";
+    action = prompt("Do you want to retreat? Press Yes to retreat or 'Ok' button to attack ", "Yes or No");   
+    try{                       //The try statement allows you to define a block of code to be tested for errors while it is being executed.
+    if(action.toLowerCase()=="yes")
+    return 1;
+    else
+    return 0;
     }
-    hull_calc(i){             //Calculating hull of aliens
-        Aliens[i].hull=Aliens[i].hull-Aliens[i].firepower;
-        return Aliens[i].hull;
-    }
-    
+    catch(err){
+    console.log("Please press yes or no");
+    } }
+    calc(i){             //Calculating hull of aliens
+    Aliens[i].hull=Aliens[i].hull-Aliens[i].firepower;
+    return Aliens[i].hull;
+    }}
+
+
+class Alien{      //Aliens also have hull, firepower and accuracy and all 3 are generated randomly, so using Math.random() functionality
+constructor() {
+this.hull=Math.floor(Math.random()*3)+4; //selecting hull=3
+this.firepower=Math.floor(Math.random()*2)+3; // selecting firepower=2
+this.accuracy=((Math.floor(Math.random() * 3) + 7) )/10;  //to get accuracy=0.6 dividing by 10 (6/10=0.6)
 }
-class Alien_Ship{      //Aliens also have hull, firepower and accuracy and all 3 are generated randomly, so using Math.random() functionality
-    constructor() {
-    this.hull=Math.floor(Math.random()*3)+3; //selecting hull=3
-    this.firepower=Math.floor(Math.random()*2)+2; // selecting firepower=2
-    this.accuracy=((Math.floor(Math.random() * 3) + 6) )/10;  //to get accuracy=0.6 dividing by 10 (6/10=0.6)
-    }
-    attack(Aliegnno)   //when alien attacks the Schwaz
-    {
-     if(Math.random()<=schwaz.accuracy)
-        {
-            console.log("%c Alien " +Aliegnno+ " attacked USS- Schwaz successfully","font-size:15px;background:lightblue;");
-        if(this.hull_calc()<=0)
-            {
-            console.log("%c USS- Schwaz is destroyed! Alien attack successful. You LOST the WAR","font-size:20px;color:red;");
-            alert("USS- Schwaz is Lost")
-            return;
-            }
-            else this.attack(Aliegnno);
-        }else
-        {
-            currentAlien=Aliegnno;
-            schwaz.attack();
-        }
-   }
-    hull_calc(){                 //hull calculated again after attack
-        this.hull=this.hull-this.firepower;
-        return this.hull;
-    }
+ak(Aliegnno){   //when alien attacks the Schwaz
+if(Math.random()<=schwaz.accuracy){
+console.log("%c Alien " +Aliegnno+ " attacked USS- Schwaz successfully","font-size:15px;background:lightblue;");
+if(this.calc()<=0){
+console.log("%c USS- Schwaz is destroyed! Alien attack successful. You LOST the WAR","font-size:20px;color:red;");
+alert("USS- Schwaz is Lost")
+return;
 }
-const Alien1= new Alien_Ship();  //defining all alien ships to Alien_ship() and creating an array of 6 aliens
-const Alien2= new Alien_Ship();
-const Alien3= new Alien_Ship();
-const Alien4= new Alien_Ship();
-const Alien5= new Alien_Ship();
-const Alien6= new Alien_Ship();
-let Aliens=[Alien1,Alien2,Alien3,Alien4,Alien5,Alien6];
-var currentAlien=0;           // we have already used currentAlien in the code above hence defining
+else this.ak(Aliegnno);
+}else
+{
+aliennow=Aliegnno;
+schwaz.ak();
+}
+}
+calc(){                
+this.hull=this.hull-this.firepower;
+return this.hull;
+}
+}
+
+const A1= new Alien();  //defining all alien ships to Alien_ship() and creating an array of 6 aliens
+const A2= new Alien();
+const A3= new Alien();
+const A4= new Alien();
+const A5= new Alien();
+const A6= new Alien();
+let Aliens=[A1,A2,A3,A4,A5,A6];
+var aliennow=0;           // we have already used currentAlien in the code above hence defining
+
 const schwaz=new Schwaz(20,5,0.7);  //values of USS-Schwaz's hull, firepower and accuracy
- alert("War is starting.... And you are the captain of USS- Schwaz, Get ready to attack or retreat");
-schwaz.attack();
-
-
-
+alert("You are the captain of USS- Schwaz, Get ready to attack or retreat");
+schwaz.ak();
